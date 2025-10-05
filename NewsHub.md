@@ -6,108 +6,14 @@ The Newsroom application is a comprehensive news management and distribution pla
 
 ## Architecture Diagram
 
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        UI[React/Redux UI]
-        WEBPACK[Webpack Build System]
-        ASSETS[Static Assets]
-    end
+<!-- ![My Diagram](./nr-diagram.svg) -->
 
-    subgraph "Web Application Layer"
-        FLASK[Flask Web App - NewsroomWebApp]
-        BLUEPRINTS[Flask Blueprints]
-        TEMPLATES[Jinja2 Templates]
-        FILTERS[Template Filters]
-    end
+<div style="overflow: auto; max-width: 100%; max-height: 600px; border: 1px solid #ccc;">
+  <img src="./nr-diagram.svg" alt="Diagram" style="width:1200px; height:auto;">
+</div>
 
-    subgraph "Core Modules"
-        AUTH[Authentication & Sessions]
-        COMPANIES[Company Management]
-        USERS[User Management]
-        WIRE[Wire Service]
-        AGENDA[Agenda/Events]
-        PRODUCTS[Products & Subscriptions]
-        NOTIFICATIONS[Notifications]
-        TOPICS[Topics & Saved Searches]
-        CARDS[Dashboard Cards]
-        REPORTS[Analytics & Reports]
-    end
 
-    subgraph "API Layer"
-        NEWSAPI[News API]
-        SEARCH[Search APIs]
-        RESTAPI[REST Endpoints]
-    end
 
-    subgraph "Data Layer"
-        MONGO[(MongoDB)]
-        ELASTIC[(Elasticsearch)]
-        REDIS[(Redis Cache)]
-    end
-
-    subgraph "External Services"
-        SUPERDESK[Superdesk CMS]
-        EMAIL[Email Service]
-        S3[Amazon S3]
-        PUSH[Push Notifications]
-    end
-
-    subgraph "Background Processing"
-        CELERY[Celery Workers]
-        BEAT[Celery Beat Scheduler]
-        WEBSOCKET[WebSocket Server]
-    end
-
-    subgraph "Deployment"
-        DOCKER[Docker Compose]
-        VAGRANT[Vagrant VM]
-        GUNICORN[Gunicorn WSGI]
-        NGINX[Nginx Proxy]
-    end
-
-    UI --> FLASK
-    WEBPACK --> ASSETS
-    FLASK --> BLUEPRINTS
-    BLUEPRINTS --> AUTH
-    BLUEPRINTS --> COMPANIES
-    BLUEPRINTS --> USERS
-    BLUEPRINTS --> WIRE
-    BLUEPRINTS --> AGENDA
-    BLUEPRINTS --> PRODUCTS
-    BLUEPRINTS --> NOTIFICATIONS
-    BLUEPRINTS --> TOPICS
-    BLUEPRINTS --> CARDS
-    BLUEPRINTS --> REPORTS
-    
-    FLASK --> NEWSAPI
-    FLASK --> SEARCH
-    FLASK --> RESTAPI
-    
-    AUTH --> MONGO
-    COMPANIES --> MONGO
-    USERS --> MONGO
-    WIRE --> ELASTIC
-    AGENDA --> ELASTIC
-    PRODUCTS --> MONGO
-    NOTIFICATIONS --> REDIS
-    
-    SUPERDESK --> WIRE
-    SUPERDESK --> AGENDA
-    EMAIL --> NOTIFICATIONS
-    S3 --> ASSETS
-    
-    CELERY --> MONGO
-    CELERY --> ELASTIC
-    BEAT --> CELERY
-    WEBSOCKET --> PUSH
-    
-    DOCKER --> MONGO
-    DOCKER --> ELASTIC
-    DOCKER --> REDIS
-    VAGRANT --> DOCKER
-    GUNICORN --> FLASK
-```
 
 ## Detailed Component Analysis
 
@@ -353,3 +259,5 @@ sequenceDiagram
 4. **Phase 4**: Consider microservices architecture for scaling
 
 This newsroom platform represents a sophisticated, production-ready news management system with strong multi-tenancy, comprehensive content management, and robust security features.
+
+mmdc -i newsroom-digram.mmd -o nr-diagram.svg
